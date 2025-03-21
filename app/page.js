@@ -1,11 +1,14 @@
 import Link from "next/link";
 import classes from "./page.module.css";
+import ImageSlideshow from "@/components/images/image-slideshow";
 
 export default function Home() {
 	return (
 		<>
 			<header className={classes.header}>
-				<div className={classes.slideshow}>Slide Show comming soon...</div>
+				<div className={classes.slideshow}>
+          <ImageSlideshow/>
+        </div>
 				<div>
 					<div className={classes.hero}>
 						<h1>Apadana Next Level Foodies App</h1>
@@ -19,7 +22,7 @@ export default function Home() {
 			</header>
 			<main>
 				<section className={classes.section}>
-					<h2>How it works</h2>
+					<h2>Apadana Modern Web Applicatons</h2>
 					<p>
 						NextLevel Food is a platform for foodies to share their favorite
 						recipes with the world. It&apos;s a place to discover new dishes,
@@ -32,7 +35,7 @@ export default function Home() {
 				</section>
 
 				<section className={classes.section}>
-					<h2>Why NextLevel Food?</h2>
+					<h2>What is The Modern Apadana NextLevel Food?</h2>
 					<p>
 						NextLevel Food is a platform for foodies to share their favorite
 						recipes with the world. It&apos;s a place to discover new dishes,
