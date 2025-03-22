@@ -1,16 +1,21 @@
 import Link from "next/link";
 import classes from "./page.module.css";
 import MealsGrid from "@/components/meals/meals-grid";
+import { getMealsFromDatabase } from "@/lib/meals";
+import { Suspense } from "react";
+
+async function Meals() {
+	const meals = await getMealsFromDatabase();
+	return <MealsGrid meals={meals} />;
+}
 
 async function MealsPage() {
-	const meals = await getMealsFromDatabase();
-
 	return (
 		<>
 			<header className={classes.header}>
 				<h1>
-					New Tech In Apadana Programming{" "}
-					<span className={classes.highlight}>You Can Learn It.</span>
+					Apadana Programming On Access ...{""}
+					<span className={classes.highlight}>You Can Learn The New Tech.</span>
 				</h1>
 				<p>Find Your Way To Progress in Your Life.</p>
 				<p className={classes.cta}>
@@ -18,7 +23,9 @@ async function MealsPage() {
 				</p>
 			</header>
 			<main className={classes.main}>
-				<MealsGrid meals={meals} /> 
+				<Suspense fallback={<p className={classes.loading}>Fetching meals...</p>}>
+					<Meals />
+				</Suspense>
 			</main>
 		</>
 	);
