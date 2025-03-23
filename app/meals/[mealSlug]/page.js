@@ -3,6 +3,33 @@ import classes from "./page.module.css";
 import { getMeal } from "@/lib/meals";
 import { notFound } from "next/navigation";
 
+export async function generateMetadata({ params }) {
+	const meal = await getMeal(params.mealSlug);
+	if (!meal) {
+		return { notFound: true };
+	}
+	return{
+		title: meal.title,
+        description: meal.summary,
+        ogImage: meal.image,
+        canonical: `/meals/${params.mealSlug}`,
+        twitterCard: "summary_large_image",
+        twitterSite: "@apadanaprogramming",
+        twitterCreator: "@apadanaprogramming",
+        robots: "index, follow",
+        openGraphType: "website",
+        url: `https://apadanaprogramming.com/meals/${params.mealSlug}`,
+        nextprev: true,
+        ogType: "website",
+        image: meal.image,
+        locale: "en_US",
+        themeColor: "#000000",
+        appleMobileWebAppCapable: "yes",
+        appleMobileWebAppStatusBarStyle: "default",
+        openGraphDescription: meal.summary,
+	}
+}
+
 function MealsDetailsPage({ params }) {
 	const meal = getMeal(params.mealSlug);
 	if (!meal) {
